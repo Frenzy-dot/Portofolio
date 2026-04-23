@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gloo.std | Clothing Designer & Graphic Art</title>
+
+  <!-- ─── SEO Meta Tags ─── -->
+  <meta name="description" content="gloo.std — Clothing designer from Banten. Artwork & graphic design for sale, commission open. Define your style.">
+  <meta name="keywords" content="gloo.std, clothing designer, graphic design, artwork, commission, streetwear, Banten">
+  <meta name="author" content="gloo.std">
+
+  <!-- ─── Open Graph (WhatsApp, Facebook, Discord) ─── -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="gloo.std | Define Your Style">
+  <meta property="og:description" content="Clothing designer from Banten. Artwork & graphic for sale — commission OPEN.">
+  <meta property="og:image" content="Barang/full-set-design.jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://gloo-std.com">
+  <meta property="og:site_name" content="gloo.std">
+
+  <!-- ─── Twitter Card ─── -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="gloo.std | Define Your Style">
+  <meta name="twitter:description" content="Clothing designer from Banten. Artwork & graphic for sale — commission OPEN.">
+  <meta name="twitter:image" content="Barang/full-set-design.jpeg">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <!-- ─── Lightbox ─── -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <span id="toast-msg">✓ Added to cart</span>
+  </div>
+
+  <!-- Cart Overlay (backdrop) -->
+  <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
+
+  <!-- Mobile Nav Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()">✕</button>
+    <ul>
+      <li><a href="#" onclick="closeMobileMenu()">Home</a></li>
+      <li><a href="#products" onclick="closeMobileMenu()">Products</a></li>
+      <li><a href="#lookbook" onclick="closeMobileMenu()">Lookbook</a></li>
+    </ul>
+  </div>
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+
+  <div class="container">
+    <nav>
+      <div class="logo">
+        <img src="Barang/logo.jpg" alt="gloo.std Logo" width="40" height="40">
+        <span>gloo<span>.std</span></span>
+      </div>
+
+      <!-- Desktop nav -->
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#lookbook">Lookbook</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <!-- Cart button -->
+        <button class="cart-btn" onclick="showCart()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .5.5v1l.5 3a.5.5 0 0 1-.5.5H1a.5.5 0 0 1-.5-.5v-1H.5A.5.5 0 0 1 0 1.5zM11 2.5V2H4.5l.5 3h7l.5-3H11z"/>
+            <path d="M3.5 11a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z"/>
+          </svg>
+          Cart (<span id="cart-count">0</span>)
+        </button>
+
+        <!-- Hamburger button (mobile only) -->
+        <button class="hamburger-btn" onclick="openMobileMenu()" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <section class="hero fade-in-up">
+      <div class="hero-inner">
+        <p class="hero-label">Est. 2026 — Banten, ID</p>
+        <h1>DEFINE YOUR <em>STYLE</em></h1>
+        <div class="hero-desc">
+          <p>Clothing Designer</p>
+          <p>— Artwork &amp; Graphics for Sale</p>
+          <p>— Commission OPEN</p>
+        </div>
+        <div class="hero-actions">
+          <a href="#products" class="btn">Shop Now</a>
+          <a href="#lookbook" class="btn-ghost">View Lookbook</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="products">
+      <div class="section-header">
+        <h2 class="section-title fade-in-up" style="animation-delay:0.1s">New Drops</h2>
+        <span class="section-label">— 3 items available</span>
+      </div>
+      <div class="grid">
+        <div class="card fade-in-up" data-num="001" style="animation-delay:0.15s">
+          <div class="card-img-wrap" onclick="openLightbox('Barang/full-set-design.jpeg', 'Full Set Design')">
+            <img src="Barang/full-set-design.jpeg" alt="Full Set Design">
+            <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+          <div class="card-body">
+            <h3>Full Set Bundle</h3>
+            <p class="price">$70</p>
+            <button class="buy-btn add-to-cart" data-id="1" data-name="Full Set Bundle" data-price="70">+ Add to Cart</button>
+          </div>
+        </div>
+        <div class="card fade-in-up" data-num="002" style="animation-delay:0.25s">
+          <div class="card-img-wrap" onclick="openLightbox('Barang/hoodie-design-1.jpeg', 'Hoodie Graphic Vol.1')">
+            <img src="Barang/hoodie-design-1.jpeg" alt="Hoodie Graphic Vol.1">
+            <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+          <div class="card-body">
+            <h3>Hoodie Graphic Vol.1</h3>
+            <p class="price">$55</p>
+            <button class="buy-btn add-to-cart" data-id="2" data-name="Hoodie Graphic Vol.1" data-price="55">+ Add to Cart</button>
+          </div>
+        </div>
+        <div class="card fade-in-up" data-num="003" style="animation-delay:0.35s">
+          <div class="card-img-wrap" onclick="openLightbox('Barang/hoodie-design-2.jpeg', 'Hoodie Graphic Vol.2')">
+            <img src="Barang/hoodie-design-2.jpeg" alt="Hoodie Graphic Vol.2">
+            <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+          <div class="card-body">
+            <h3>Hoodie Graphic Vol.2</h3>
+            <p class="price">$50</p>
+            <button class="buy-btn add-to-cart" data-id="3" data-name="Hoodie Graphic Vol.2" data-price="50">+ Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Cart Modal (upgraded) -->
+  <div id="cart-modal" class="modal">
+    <div class="modal-header">
+      <h2>Your Cart</h2>
+      <button class="modal-close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        Total: <span id="cart-total-price">$0</span>
+      </div>
+      <button class="checkout-btn" id="checkout-btn" onclick="handleCheckout()">
+        Checkout →
+      </button>
+    </div>
+  </div>
+
+  <!-- ─── Lookbook Section ─── -->
+  <section class="lookbook" id="lookbook">
+    <div class="container">
+
+      <div class="lookbook-header reveal">
+        <p class="lookbook-label">// visual archive</p>
+        <h2>Lookbook</h2>
+        <p class="lookbook-sub">Past drops, experiments &amp; the aesthetic behind gloo.std.</p>
+      </div>
+
+      <!-- Masonry-style grid using 3 columns -->
+      <div class="lookbook-grid">
+
+        <!-- Col 1 -->
+        <div class="lb-col">
+          <div class="lb-item reveal" style="transition-delay:0.05s"
+               onclick="openLightbox('Barang/full-set-preview-1.jpeg','Full Set Bundle — gloo.std')">
+            <img src="Barang/full-set-preview-1.jpeg" alt="Full Set Bundle">
+            <div class="lb-caption">
+              <span class="lb-tag">DROP 001</span>
+              <span class="lb-name">Full Set Bundle</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="lb-col">
+          <div class="lb-item reveal" style="transition-delay:0.15s"
+               onclick="openLightbox('Barang/full-set-preview-2.jpeg','Full Set Graphic Vol.1 — gloo.std')">
+            <img src="Barang/full-set-preview-2.jpeg" alt="Full Set Graphic Vol.1">
+            <div class="lb-caption">
+              <span class="lb-tag">DROP 002</span>
+              <span class="lb-name">Hoodie Graphic Vol.1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="lb-col">
+          <div class="lb-item reveal" style="transition-delay:0.25s"
+               onclick="openLightbox('Barang/full-set-preview-3.jpeg','Full Set Graphic Vol.2 — gloo.std')">
+            <img src="Barang/full-set-preview-3.jpeg" alt="Full Set Graphic Vol.2">
+            <div class="lb-caption">
+              <span class="lb-tag">DROP 003</span>
+              <span class="lb-name">Hoodie Graphic Vol.2</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end lookbook-grid -->
+
+      <!-- Commission CTA -->
+      <div class="lookbook-cta reveal">
+        <p>Want something custom?</p>
+        <a href="https://instagram.com/gloo.std" target="_blank" class="btn">Commission Open — DM Us</a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 gloo.std. All rights reserved. Made in Banten.</p>
+    <p>Follow us: <a href="https://instagram.com/gloo.std" target="_blank">@gloo.std</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
