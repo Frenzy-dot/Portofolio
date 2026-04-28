@@ -117,7 +117,7 @@ contactForm.addEventListener('submit', (e) => {
 
     // Simple validation
     if (!name || !email || !message) {
-        showFormMessage('Mohon lengkapi semua field.', 'error');
+        showFormMessage('Please fill out all fields.', 'error');
         return;
     }
 
@@ -133,7 +133,7 @@ contactForm.addEventListener('submit', (e) => {
     submitBtn.disabled = true;
 
     setTimeout(() => {
-        showFormMessage('Pesan berhasil dikirim! Terima kasih telah menghubungi saya.', 'success');
+        showFormMessage('Message sent successfully! Thank you for contacting me.', 'success');
         contactForm.reset();
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
