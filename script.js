@@ -108,51 +108,49 @@ backToTop.addEventListener('click', () => {
 });
 
 // Contact Form Handling
-contactForm.addEventListener('submit', (e) => {
+// Contact Form Handling (Integrated with EmailJS)
+contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
     const name = document.getElementById('formName').value.trim();
     const email = document.getElementById('formEmail').value.trim();
-    const message = document.getElementById('formMessage').value.trim();
+    const message = document.getElementById('formInput').value.trim();
 
-    // Simple validation
+    // 1. Validasi Sederhana
     if (!name || !email || !message) {
         showFormMessage('Please fill out all fields.', 'error');
         return;
     }
 
     if (!isValidEmail(email)) {
-        showFormMessage('Mohon masukkan email yang valid.', 'error');
+        showFormMessage('Please enter a valid email address.', 'error');
         return;
     }
 
-    // Simulate form submission
+    // 2. Persiapan Tombol Loading
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-        showFormMessage('Message sent successfully! Thank you for contacting me.', 'success');
-        contactForm.reset();
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }, 1500);
+    // 3. Eksekusi EmailJS
+    // Pastikan SERVICE_ID dan TEMPLATE_ID sudah sesuai dengan dashboard EmailJS Anda
+    const serviceID = 'service_frenzy'; 
+    const templateID = 'template_vfb4362';
+
+    emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+            showFormMessage('Message sent successfully! Thank you for contacting me.', 'success');
+            contactForm.reset();
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, (err) => {
+            showFormMessage('Failed to send message. Please try again later.', 'error');
+            console.error('EmailJS Error:', err);
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
 });
-
-function showFormMessage(text, type) {
-    formMessage.textContent = text;
-    formMessage.className = 'form-message ' + type;
-
-    setTimeout(() => {
-        formMessage.className = 'form-message';
-    }, 5000);
-}
-
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -168,3 +166,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Email validator
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// Show form message
+function showFormMessage(msg, type) {
+    formMessage.textContent = msg;
+    formMessage.className = 'form-message ' + type;
+    setTimeout(() => {
+        formMessage.textContent = '';
+        formMessage.className = 'form-message';
+    }, 5000);
+}
