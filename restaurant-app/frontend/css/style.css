@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --gold: #D4AF37;
+    --gold-hover: #AA8C2C;
+    --bg-light: #FAFAFA;
+    --text-light: #1A1A1A;
+    --bg-dark: #0F0F0F;
+    --text-dark: #F5F5F5;
+    --card-light: #FFFFFF;
+    --card-dark: #1A1A1A;
+    
+    --bg-color: var(--bg-light);
+    --text-color: var(--text-light);
+    --card-bg: var(--card-light);
+}
+
+[data-theme="dark"] {
+    --bg-color: var(--bg-dark);
+    --text-color: var(--text-dark);
+    --card-bg: var(--card-dark);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-color); transition: background 0.3s, color 0.3s; }
+h1, h2, h3, .brand { font-family: 'Playfair Display', serif; }
+
+/* Navbar */
+nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: var(--bg-color); border-bottom: 1px solid rgba(212, 175, 55, 0.2); position: sticky; top: 0; z-index: 100;}
+.brand { font-size: 1.8rem; color: var(--gold); font-weight: 700; text-decoration: none;}
+.nav-links a { color: var(--text-color); text-decoration: none; margin-left: 2rem; font-size: 0.9rem; transition: 0.3s; }
+.nav-links a:hover { color: var(--gold); }
+#theme-toggle { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 0.3rem 0.8rem; cursor: pointer; border-radius: 4px; margin-left: 2rem;}
+
+/* Hero */
+.hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover; color: white; animation: fadeIn 1s ease-in; }
+.hero h1 { font-size: 4rem; margin-bottom: 1rem; color: var(--gold); }
+.btn-gold { background: var(--gold); color: #000; padding: 0.8rem 2rem; text-decoration: none; font-weight: 600; border-radius: 4px; border: none; cursor: pointer; transition: 0.3s; display: inline-block;}
+.btn-gold:hover { background: var(--gold-hover); transform: translateY(-2px); }
+
+/* Menu Card Grid */
+.menu-section { padding: 5rem 5%; }
+.menu-section h2 { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: var(--gold); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.card { background: var(--card-bg); padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; text-align: center; border: 1px solid transparent;}
+.card:hover { transform: translateY(-10px); border-color: var(--gold); }
+
+/* Form & Visual Table */
+.container { max-width: 800px; margin: 4rem auto; padding: 2rem; background: var(--card-bg); border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; display: flex; flex-direction: column;}
+input, select { padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px; background: var(--bg-color); color: var(--text-color); font-family: 'Poppins', sans-serif;}
+input:focus, select:focus { outline: none; border-color: var(--gold); }
+.tables-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.table-box { padding: 1.5rem; border: 2px solid #ccc; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; }
+.table-box.selected { border-color: var(--gold); background: rgba(212, 175, 55, 0.1); color: var(--gold); font-weight: bold;}
+
+/* Toast Notification */
+.toast { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: #000; padding: 1rem 2rem; border-radius: 4px; opacity: 0; transform: translateY(20px); transition: 0.4s; z-index: 1000; font-weight: 500;}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* Footer */
+footer { text-align: center; padding: 3rem 5%; background: #0F0F0F; color: #888; border-top: 1px solid #333;}
+footer .gold-text { color: var(--gold); margin-bottom: 1rem; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
